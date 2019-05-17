@@ -3,18 +3,19 @@
 #include <vector>
 
 #define MON_CNT 12;
+#define MAX_MON 31
 
 using namespace std;
 
-void add(vector<vector<string>>& diary, int date, string work) {
+void add(vector<vector<string>>& diary, const int date, const string& work) {
 	diary[date].push_back(work);
 }
 
-void next(vector<vector<string>>& diary, int next_size) {
-
+void next(vector<vector<string>>& diary, const int prev_size, const int cur_size) {
+	for (int i = prev_size; i < cur_size)
 }
 
-void dump(const vector<vector<string>>& diary, int date) {
+void dump(const vector<vector<string>>& diary, const int date) {
 	cout << date;
 	for (auto elem : diary[date]) {
 		 cout << " " << elem;
@@ -25,7 +26,7 @@ void dump(const vector<vector<string>>& diary, int date) {
 int main() {
 	vector<int> mon = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	int cur_mon = 0;
-	vector<vector<string>> diary;
+	vector<vector<string>> diary(MAX_MON);
 
 	int cmd_nbr;
 	cin >> cmd_nbr;
@@ -33,8 +34,9 @@ int main() {
 		string op_name;
 		cin >> op_name;
 		if (op_name == "NEXT") {
+			int prev_mon = cur_mon;
 			++cur_mon %= MON_CNT;
-			next(diary, mon[cur_mon]);
+			next(diary, mon[prev_mon], mon[cur_mon]);
 		}
 		else {
 			int date;
@@ -44,11 +46,13 @@ int main() {
 			}
 			if (op_name == "ADD") {
 				string work;
+				cin >> work;
 				add(diary, date, work);
 			}
 		}
 
 	}
+	cin >> cmd_nbr;
 
 	return 0;
 }
