@@ -12,11 +12,19 @@ void add(vector<vector<string>>& diary, const int date, const string& work) {
 }
 
 void next(vector<vector<string>>& diary, const int prev_size, const int cur_size) {
-	for (int i = prev_size; i < cur_size)
+	if (cur_size > prev_size) {
+		return;
+	}
+	for (int i = cur_size + 1; i <= prev_size; ++i) {
+		for (auto elem : diary[i]) {
+			add(diary, cur_size, elem);
+		}
+		diary[i].clear();
+	}
 }
 
 void dump(const vector<vector<string>>& diary, const int date) {
-	cout << date;
+	cout << diary[date].size();
 	for (auto elem : diary[date]) {
 		 cout << " " << elem;
 	}
@@ -26,7 +34,7 @@ void dump(const vector<vector<string>>& diary, const int date) {
 int main() {
 	vector<int> mon = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	int cur_mon = 0;
-	vector<vector<string>> diary(MAX_MON);
+	vector<vector<string>> diary(MAX_MON + 1);
 
 	int cmd_nbr;
 	cin >> cmd_nbr;
