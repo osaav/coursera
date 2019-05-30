@@ -1,3 +1,4 @@
 ﻿  task_2_13.cpp
+e:\dev\coursera\coursera\task_2_13.cpp(35): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Coursera.vcxproj -> E:\dev\coursera\x64\Debug\Coursera.exe
   Coursera.vcxproj -> E:\dev\coursera\x64\Debug\Coursera.pdb (Full PDB)

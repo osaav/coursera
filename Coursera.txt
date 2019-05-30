@@ -32,3 +32,17 @@ map - словари
             for (const auto& [key, value] : m) {
                 key, value;
             }
+
+    Наполнение вектора по его ссылке:
+        // Подготовка
+        string bus;
+        cin >> bus;
+        map<string, vector<string>> buses_to_stops;
+        int stop_count;
+        cin >> stop_count;
+        // Ввод вектора по ссылке
+        vector<string>& stops = buses_to_stops[bus]; // С помощью ссылки дадим короткое название вектору со списком остановок данного автобуса. Ключ bus изначально отсутствовал в словаре, поэтому он автоматически добавится туда с пустым вектором в качестве значения
+        stops.resize(stop_count);
+        for (string& stop : stops) {
+          cin >> stop;
+        }
