@@ -1,2 +1,5 @@
-﻿  Coursera.vcxproj -> E:\dev\coursera\x64\Debug\Coursera.exe
+﻿  task_3_5.cpp
+e:\dev\coursera\coursera\task_3_5.cpp(107): warning C4240: nonstandard extension used: access to 'Person::fullname' now defined to be 'private', previously it was defined to be 'public'
+  e:\dev\coursera\coursera\task_3_5.cpp(17): note: see declaration of 'Person::fullname'
+  Coursera.vcxproj -> E:\dev\coursera\x64\Debug\Coursera.exe
   Coursera.vcxproj -> E:\dev\coursera\x64\Debug\Coursera.pdb (Full PDB)

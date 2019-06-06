@@ -28,17 +28,17 @@ public:
 			}
 		}
 		string res;
-		if ((founded.first_name.length() != 0) && (founded.last_name.length() != 0)) {
-			res = founded.first_name + " " + founded.last_name;
-		}
-		else if ((founded.first_name.length() == 0) && (founded.last_name.length() == 0)) {
+		if ((founded.first_name.length() == 0) && (founded.last_name.length() == 0)) {
 			res = "Incognito";
 		}
-		else if (founded.first_name.length() == 0) {
+		else if ((founded.first_name.length() == 0)) {
 			res = founded.last_name + " with unknown first name";
 		}
 		else if (founded.last_name.length() == 0) {
 			res = founded.first_name + " with unknown last name";
+		}
+		else {
+			res = founded.first_name + ' ' + founded.first_name;
 		}
 		return res;
 	}

@@ -5,13 +5,13 @@
 
 using namespace std;
 
-class SortedStrings{
+class SortedStrings {
 public:
 	void AddString(const string& s) {
 		sorted.push_back(s);
-		sort(begin(sorted), end(sorted));
 	}
 	vector<string> GetSortedStrings() {
+		sort(begin(sorted), end(sorted));
 		return sorted;
 	}
 private:
