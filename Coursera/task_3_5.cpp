@@ -5,112 +5,92 @@
 
 using namespace std;
 
+vector<string> FindNameHistory(const map<int, string>& name_hist, int year) {
+	vector<string> found_hist;
+	for (const auto& item : name_hist) {
+		if (item.first <= year && (found_hist.empty() || (found_hist.back() != item.second))) {
+			found_hist.push_back(item.second);
+		}
+	}
+	return found_hist;
+}
+
+string JoinHistNames(vector<string> name_hist) {
+	if (name_hist.empty()) {
+		return "";
+	}
+	reverse(begin(name_hist), end(name_hist));
+	string joined_name = name_hist[0];
+	for (int i = 1; i < name_hist.size(); ++i) {
+		if (i == 1) {
+			joined_name += " (";
+		}
+		else {
+			joined_name += ", ";
+		}
+		joined_name += name_hist[i];
+	}
+	if (name_hist.size() > 1) {
+		joined_name += ")";
+	}
+	return joined_name;
+}
+
+string ComposeFullName(const string& first_name, const string& last_name) {
+	if (first_name.empty() && last_name.empty()) {
+		return "Incognito";
+	}
+	else if (first_name.empty()) {
+		return last_name + " with unknown first name";
+	}
+	else if (last_name.empty()) {
+		return first_name + " with unknown last name";
+	}
+	else {
+		return first_name + " " + last_name;
+	}
+}
+
 class Person {
 public:
 	void ChangeFirstName(int year, const string& first_name) {
-		hist[year].first_name = first_name;
+		first_name_hist[year] = first_name;
 	}
 	void ChangeLastName(int year, const string& last_name) {
-		hist[year].last_name = last_name;
-	}
-
-	struct fullname;
-	fullname FindByHistory(int year) {
-		fullname founded;
-		for (auto item : hist) {
-			if (item.first <= year) {
-				if (!item.second.first_name.empty()) {
-					if (!founded.first_name.empty()) {
-						founded.first_name_hist.insert(founded.first_name_hist.begin(), founded.first_name);
-					}
-					founded.first_name = item.second.first_name;
-				}
-				if (!item.second.last_name.empty()) {
-					if (!founded.last_name.empty()) {
-						founded.last_name_hist.insert(founded.last_name_hist.begin(), founded.last_name);
-					}
-					founded.last_name = item.second.last_name;
-				}
-			}
-			else {
-				break;
-			}
-		}
-		return founded;
-	}
-
-	string GetFirstNameHist(fullname founded) {
-		string res = "";
-		if (founded.first_name_hist.empty()) {
-			return res;
-		}
-		res += " (";
-		for (auto i : founded.first_name_hist) {
-			res = res + i + ", ";
-		}
-		res = res.substr(0, res.size() - 2);
-		res += ")";
-		return res;
-	}
-
-	string GetLastNameHist(fullname founded) {
-		string res = "";
-		if (founded.last_name_hist.empty()) {
-			return res;
-		}
-		res += " (";
-		for (auto i : founded.last_name_hist) {
-			res = res + i + ", ";
-		}
-		res = res.substr(0, res.size() - 2);
-		res += ")";
-		return res;
+		last_name_hist[year] = last_name;
 	}
 
 	string GetFullName(int year) {
-		fullname founded = FindByHistory(year);
-		string res;
-		if ((founded.first_name.empty()) && (founded.last_name.empty())) {
-			res = "Incognito";
+		const vector<string> first_name_hist = FindFirstNameHistory(year);
+		const vector<string> last_name_hist = FindLastNameHistory(year);
+
+		string first_name;
+		string last_name;
+		if (!first_name_hist.empty()) {
+			first_name = first_name_hist.back();
 		}
-		else if ((founded.first_name.empty())) {
-			res = founded.last_name + " with unknown first name";
+		if (!last_name_hist.empty()) {
+			last_name = last_name_hist.back();
 		}
-		else if (founded.last_name.empty()) {
-			res = founded.first_name + " with unknown last name";
-		}
-		else {
-			res = founded.first_name + ' ' + founded.last_name;
-		}
-		return res;
+		return ComposeFullName(first_name, last_name);
 	}
 
 	string GetFullNameWithHistory(int year) {
-		fullname founded = FindByHistory(year);
-		string res;
-		if ((founded.first_name.empty()) && (founded.last_name.empty())) {
-			res = "Incognito";
-		}
-		else if ((founded.first_name.empty())) {
-			res = founded.last_name + GetLastNameHist(founded) + " with unknown first name";
-		}
-		else if (founded.last_name.empty()) {
-			res = founded.first_name + GetFirstNameHist(founded) + " with unknown last name";
-		}
-		else {
-			res = founded.first_name + GetFirstNameHist(founded) + ' ' + founded.last_name + GetLastNameHist(founded);
-		}
-		return res;
+		const string first_name = JoinHistNames(FindFirstNameHistory(year));
+		const string last_name = JoinHistNames(FindLastNameHistory(year));
+		return ComposeFullName(first_name, last_name);
 	}
 
 private:
-	struct fullname {
-		string first_name;
-		string last_name;
-		vector<string> first_name_hist;
-		vector<string> last_name_hist;
-	};
-	map<int, fullname> hist;
+	vector<string> FindFirstNameHistory(int year) {
+		return FindNameHistory(first_name_hist, year);
+	}
+	vector<string> FindLastNameHistory(int year) {
+		return FindNameHistory(last_name_hist, year);
+	}
+
+	map<int, string> first_name_hist;
+	map<int, string> last_name_hist;
 };
 
 int main() {

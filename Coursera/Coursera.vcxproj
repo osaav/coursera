@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="task_3_5.cpp" />
+    <ClCompile Include="view.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{ADD59716-C757-4FC3-BB59-7A673A56922E}</ProjectGuid>
