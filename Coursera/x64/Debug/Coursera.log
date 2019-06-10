@@ -1,5 +1,4 @@
-﻿  view.cpp
-  task_3_5.cpp
-  Generating Code...
-  Coursera.vcxproj -> E:\dev\coursera\x64\Debug\Coursera.exe
-  Coursera.vcxproj -> E:\dev\coursera\x64\Debug\Coursera.pdb (Full PDB)
+﻿  task_4_1.cpp
+e:\dev\coursera\coursera\task_4_1.cpp(46): error C3861: 'Specialization': identifier not found
+e:\dev\coursera\coursera\task_4_1.cpp(47): error C3861: 'Course': identifier not found
+e:\dev\coursera\coursera\task_4_1.cpp(48): error C3861: 'Week': identifier not found
