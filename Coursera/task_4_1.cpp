@@ -3,37 +3,37 @@
 
 using namespace std;
 
+struct Specialization {
+	string value;
+	explicit Specialization(string new_value) {
+		value = new_value;
+	}
+};
+
+struct Course {
+	string value;
+	explicit Course(string new_value) {
+		value = new_value;
+	}
+};
+
+struct Week {
+	string value;
+	explicit Week(string new_value) {
+		value = new_value;
+	}
+};
+
 struct LectureTitle {
 public:
-	struct Specialization {
-		string value;
-		explicit Specialization(string new_value) {
-			value = new_value;
-		}
-	};
-
-	struct Course {
-		string value;
-		explicit Course(string new_value) {
-			value = new_value;
-		}
-	};
-
-	struct Week {
-		string value;
-		explicit Week(string new_value) {
-			value = new_value;
-		}
-	};
-
 	LectureTitle(Specialization new_specialization, Course new_course, Week new_week) {
 		specialization = new_specialization.value;
 		course = new_course.value;
 		week = new_week.value;
 	}
-	/*void OutTitle() {
+	void OutTitle() {
 		cout << specialization << endl << course << endl << week << endl;
-	}*/
+	}
 private:
 	string specialization;
 	string course;
@@ -47,9 +47,9 @@ int main() {
 		Course("White belt"),
 		Week("4th")
 	);
-/*	title.OutTitle();
+	title.OutTitle();
 
 	int n;
-	cin >> n;*/
+	cin >> n;
 	return 0;
 }
