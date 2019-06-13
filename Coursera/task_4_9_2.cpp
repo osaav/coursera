@@ -20,6 +20,25 @@ int GetGCD(int a, int b) {
 	}
 	return a + b;
 }
+// Найти наименьшее общее кратное (least common multiple)
+int GetLCM(int a, int b) {
+	return a * b / GetGCD(a, b);
+}
+
+// Перенос минуса, если он есть, в числитель
+void FixSign(int& a, int& b) {
+	if (b < 0) {
+		a *= -1;
+		b *= -1;
+	}
+}
+
+// Сокражение числителя и знаменателя на НОД
+void ReduceFraction(int& a, int& b) {
+	int gdc = GetGCD(a, b);
+	a /= gdc;
+	b /= gdc;
+}
 
 class Rational {
 public:
@@ -31,13 +50,10 @@ public:
 			denominator = 1;
 			return;
 		}
-		if (b < 0) {
-			numerator = a * (-1);
-			denominator = b * (-1);
-		}
-		int gdc = GetGCD(a, b);
-		numerator = a / gdc;
-		denominator = b / gdc;
+		FixSign(a, b);
+		ReduceFraction(a, b);
+		numerator = a;
+		denominator = b;
 	}
 
 	int Numerator() const {
@@ -52,6 +68,37 @@ private:
 	int numerator = 0;
 	int denominator = 1;
 };
+
+bool operator ==(const Rational& lhs, const Rational& rhs) {
+	if (lhs.Numerator() == rhs.Numerator() && lhs.Denominator() == rhs.Denominator()) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+Rational operator +(const Rational& lhs, const Rational& rhs) {
+	int lcm = GetLCM(lhs.Denominator(), rhs.Denominator());
+	int mul_lhs = lcm / lhs.Denominator();
+	int mul_rhs = lcm / rhs.Denominator();
+	int Numerators_sum = lhs.Numerator() * mul_lhs + rhs.Numerator() * mul_rhs;
+	int Denominator_sum = lcm;
+	ReduceFraction(Numerators_sum, Denominator_sum);
+	Rational res(Numerators_sum, Denominator_sum);
+	return res;
+}
+
+Rational operator -(const Rational& lhs, const Rational& rhs) {
+	int lcm = GetLCM(lhs.Denominator(), rhs.Denominator());
+	int mul_lhs = lcm / lhs.Denominator();
+	int mul_rhs = lcm / rhs.Denominator();
+	int Numerators_sum = lhs.Numerator() * mul_lhs - rhs.Numerator() * mul_rhs;
+	int Denominator_sum = lcm;
+	ReduceFraction(Numerators_sum, Denominator_sum);
+	Rational res(Numerators_sum, Denominator_sum);
+	return res;
+}
 
 int main() {
 	{
