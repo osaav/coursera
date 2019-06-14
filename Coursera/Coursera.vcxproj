@@ -19,13 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="task_4_9_1.cpp" />
+    <ClCompile Include="task_4_9_2.cpp" />
+    <ClCompile Include="task_4_9_3.cpp" />
     <ClCompile Include="task_4_9_4.cpp" />
+    <ClCompile Include="task_4_9_5.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{ADD59716-C757-4FC3-BB59-7A673A56922E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Coursera</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
