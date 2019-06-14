@@ -29,7 +29,7 @@
     <ProjectGuid>{ADD59716-C757-4FC3-BB59-7A673A56922E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Coursera</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

@@ -69,9 +69,6 @@ public:
 		return denominator;
 	}
 
-	friend istream& operator >>(istream& in, Rational& obj);
-	friend ostream& operator <<(ostream& out, Rational& obj);
-
 private:
 	int numerator = 0;
 	int denominator = 1;
@@ -87,23 +84,17 @@ bool operator ==(const Rational& lhs, const Rational& rhs) {
 }
 
 istream& operator >>(istream& in, Rational& obj) {
-	if (in) {
-		int a, b;
-		in >> a;
-		in.ignore(1);
-		in >> b;
-		in.ignore(1);
-		FixSign(a, b);
-		ReduceFraction(a, b);
-		obj.numerator = a;
-		obj.denominator = b;
+	int n, d;
+	char c;
+	in >> n >> c >> d;
+	if (in && c == '/') {
+		obj = Rational(n, d);
 	}
 	return in;
 }
 
-ostream& operator <<(ostream& out, Rational& obj) {
-	out << obj.numerator << "/" << obj.denominator;
-	return out;
+ostream& operator <<(ostream& out, const Rational& obj) {
+	return out << obj.Numerator() << "/" << obj.Denominator();
 }
 
 int main() {

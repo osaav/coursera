@@ -80,6 +80,14 @@ bool operator ==(const Rational& lhs, const Rational& rhs) {
 	}
 }
 
+/*
+// используем обычную формулу сложения дробей, основанную на приведении слагаемых к общему знаменателю
+Rational operator + (const Rational& lhs, const Rational& rhs) {
+  return {
+      lhs.Numerator() * rhs.Denominator() + rhs.Numerator() * lhs.Denominator(),
+      lhs.Denominator() * rhs.Denominator()
+  };
+}*/
 Rational operator +(const Rational& lhs, const Rational& rhs) {
 	int lcm = GetLCM(lhs.Denominator(), rhs.Denominator());
 	int mul_lhs = lcm / lhs.Denominator();
@@ -91,6 +99,16 @@ Rational operator +(const Rational& lhs, const Rational& rhs) {
 	return res;
 }
 
+/*
+// вычитание реализуем аналогично сложению
+// дублирования кода можно было избежать, определив для класса Rational операцию унарного минуса: тогда разность lhs и rhs можно было бы вычислить           как lhs + (-rhs)
+Rational operator - (const Rational& lhs, const Rational& rhs) {
+	return {
+		lhs.Numerator() * rhs.Denominator() - rhs.Numerator() * lhs.Denominator(),
+		lhs.Denominator() * rhs.Denominator()
+	};
+}
+*/
 Rational operator -(const Rational& lhs, const Rational& rhs) {
 	int lcm = GetLCM(lhs.Denominator(), rhs.Denominator());
 	int mul_lhs = lcm / lhs.Denominator();

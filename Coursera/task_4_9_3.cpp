@@ -81,19 +81,14 @@ bool operator ==(const Rational& lhs, const Rational& rhs) {
 }
 
 Rational operator *(const Rational& lhs, const Rational& rhs) {
-	int Numerators_mul = lhs.Numerator() * rhs.Numerator();
-	int Denumerator_mul = lhs.Denominator() * rhs.Denominator();
-	GetGCD(Numerators_mul, Denumerator_mul);
-	Rational res(Numerators_mul, Denumerator_mul);
-	return res;
+	return {
+		lhs.Numerator() * rhs.Numerator(),
+		lhs.Denominator() * rhs.Denominator()
+	};
 }
 
 Rational operator /(const Rational& lhs, const Rational& rhs) {
-	int Numerators_div = lhs.Numerator() * rhs.Denominator();
-	int Denumerator_div = lhs.Denominator() * rhs.Numerator();
-	GetGCD(Numerators_div, Denumerator_div);
-	Rational res(Numerators_div, Denumerator_div);
-	return res;
+	return lhs * Rational(rhs.Denominator, rhs.Numerator);
 }
 
 int main() {

@@ -82,7 +82,12 @@ bool operator ==(const Rational& lhs, const Rational& rhs) {
 		return false;
 	}
 }
-
+/*
+// чтобы сравнить lhs с rhs, сравним их разность с нулём, что равносильно сравнению с нулём числителя
+bool operator < (const Rational& lhs, const Rational& rhs) {
+	return (lhs - rhs).Numerator() < 0;
+}
+*/
 bool operator <(const Rational& lhs, const Rational& rhs) {
 	if (lhs.Numerator() == rhs.Numerator() && lhs.Denominator() > rhs.Denominator()) {
 		return true;

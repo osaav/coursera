@@ -221,17 +221,8 @@ Explicit
         return lhs.hour < rhs.hour;
     }
 
-!!!!!!!!
-    istream& operator>>(istream& stream, Rational& input) {
-    int a, b;
-    stringstream temp;
-    string line;
-    stream >> line;
-    if (line.empty()) return stream;
-    temp<<line;
-        temp >> a;
-        temp.ignore(1);
-        temp >> b;
-        input = { a, b };
-    return stream;
-}
+//-----------------------
+Общее
+//-----------------------
+Инверсия знака допустима следующей записью:
+    numerator = -numerator;

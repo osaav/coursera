@@ -40,7 +40,10 @@ void ReduceFraction(int& a, int& b) {
 
 class Rational {
 public:
-	Rational() {}
+	Rational() {
+		numerator = 0;
+		denominator = 0;
+	}
 
 	Rational(int a, int b) {
 		if (a == 0) {
@@ -63,8 +66,8 @@ public:
 	}
 
 private:
-	int numerator = 0;
-	int denominator = 1;
+	int numerator;
+	int denominator;
 };
 
 int main() {
