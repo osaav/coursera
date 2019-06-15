@@ -19,11 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="task_4_9_1.cpp" />
-    <ClCompile Include="task_4_9_2.cpp" />
-    <ClCompile Include="task_4_9_3.cpp" />
-    <ClCompile Include="task_4_9_4.cpp" />
-    <ClCompile Include="task_4_9_5.cpp" />
+    <ClCompile Include="task_4_14.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{ADD59716-C757-4FC3-BB59-7A673A56922E}</ProjectGuid>

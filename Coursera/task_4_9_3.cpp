@@ -88,7 +88,7 @@ Rational operator *(const Rational& lhs, const Rational& rhs) {
 }
 
 Rational operator /(const Rational& lhs, const Rational& rhs) {
-	return lhs * Rational(rhs.Denominator, rhs.Numerator);
+	return lhs * Rational(rhs.Denominator(), rhs.Numerator());
 }
 
 int main() {
